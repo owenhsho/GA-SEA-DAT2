@@ -32,9 +32,15 @@ r = requests.get('http://api.census.gov/data/2013/language?get=EST,LANLABEL,NAME
 #look at the contents of the output of the json() method.  It looks like it can easily become a list of lists
 
 # Convert the jason() method output into a dataframe with the first list as the column header and the rest as rows of data
-
-
+import pandas as pd
+col = r.json()[0]
+data = r.json()[1:]
+df=pd.DataFrame(data,columns = col )
+print(df)
 # Sort the dataframe decending by the number of people speaking the language
+df.sort(columns = LANLABEL)
+df.sort()
+
 # Check the data type of 'EST', the number of people that speak the language
 
 
